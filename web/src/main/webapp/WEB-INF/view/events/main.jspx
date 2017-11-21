@@ -1,0 +1,33 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:s="http://www.springframework.org/tags/form"
+          xmlns:spring="http://www.springframework.org/tags"
+          xmlns="http://www.w3.org/1999/xhtml" version="2.0">
+    <div><h3><spring:message code="events.title"/></h3></div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="text-center"><spring:message code="eventId"/></th>
+            <th class="text-center"><spring:message code="event.team1"/></th>
+            <th class="text-center"><spring:message code="event.team2"/></th>
+            <th class="text-center"><spring:message code="event.win1"/></th>
+            <th class="text-center"><spring:message code="event.draw"/></th>
+            <th class="text-center"><spring:message code="event.win2"/></th>
+            <th class="text-center"><spring:message code="event.result"/></th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="event" items="${events}" varStatus="status">
+            <tr>
+                <td>${event.id}</td>
+                <td>${event.team1.name}</td>
+                <td>${event.team2.name}</td>
+                <td>${event.win1Coefficient}</td>
+                <td>${event.drawCoefficient}</td>
+                <td>${event.win2Coefficient}</td>
+                <td>${event.eventResult}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</jsp:root>

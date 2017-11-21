@@ -1,0 +1,28 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:s="http://www.springframework.org/tags/form"
+          xmlns:spring="http://www.springframework.org/tags"
+          xmlns="http://www.w3.org/1999/xhtml" version="2.0">
+<s:form class="form-horizontal col-sm-12" id="userForm" name="user" action="${pageContext.request.contextPath}/user/registration" method="post" modelAttribute="user">
+    <c:if test="${isUnique == false}"><span><spring:message code="error.login"/></span></c:if><br/>
+    <s:errors path="password" cssStyle="color: red"/><br/>
+    <s:errors path="username" cssStyle="color: red"/>
+    <fieldset>
+        <div class="form-group">
+            <label class="control-label col-sm-4" for="username_or_email"><spring:message code="login.login"/></label>
+            <div class="col-sm-6">
+                <s:input class="form-control" id="username_or_email" name="username" placeholder="login" type="text" path="username"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4" for="password"><spring:message code="login.password"/></label>
+            <div class="col-sm-6">
+                <s:input class="form-control" id="password" name="password" placeholder="Password" type="password" path="password"/>
+            </div>
+        </div>
+        <div>
+            <input type="submit" class="btn btn-primary" value="Sing Up"/>
+        </div>
+    </fieldset>
+</s:form>
+</jsp:root>

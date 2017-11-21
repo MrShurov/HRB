@@ -1,0 +1,29 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:s="http://www.springframework.org/tags/form"
+          xmlns:spring="http://www.springframework.org/tags"
+          xmlns="http://www.w3.org/1999/xhtml" version="2.0">
+    <div><h3><spring:message code="bets.title"/></h3></div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="text-center"><spring:message code="betId"/></th>
+            <th class="text-center"><spring:message code="eventId"/></th>
+            <th class="text-center"><spring:message code="bet.coefficient"/></th>
+            <th class="text-center"><spring:message code="bet"/></th>
+            <th class="text-center"><spring:message code="predictableResult"/></th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="bet" items="${bets}" varStatus="status">
+            <tr>
+                <td>${bet.id}</td>
+                <td>${bet.event.team1.name + bet.event.team2.name}</td>
+                <td>${bet.coefficient}</td>
+                <td>${bet.bet}</td>
+                <td>${bet.valueBet}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</jsp:root>

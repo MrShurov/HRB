@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="welcome" extends="default">
+        <put-attribute name="title" value="Welcome user"/>
+    </definition>
+
+    <definition name="default" template="/WEB-INF/view/layouts/default.jspx">
+        <put-attribute name="title" value="Web project"/>
+        <put-attribute name="body" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/view/common/footer.jspx"/>
+    </definition>
+
+    <definition name="events/main" extends="default">
+        <put-attribute name="title" value="Events"/>
+        <put-attribute name="body" value="/WEB-INF/view/events/main.jspx"/>
+    </definition>
+    <definition name="bets/main" extends="default">
+        <put-attribute name="title" value="Web project"/>
+        <put-attribute name="body" value="/WEB-INF/view/bets/main.jspx"/>
+    </definition>
+
+    <definition name="login" extends="default">
+        <put-attribute name="title" value="Login page"/>
+        <put-attribute name="body" value="/WEB-INF/view/user/login.jspx"/>
+    </definition>
+
+    <definition name="registration" extends="default">
+        <put-attribute name="title" value="Registration Page"/>
+        <put-attribute name="body" value="/WEB-INF/view/user/registration.jspx"/>
+    </definition>
+
+    <definition name="admin" extends="default">
+        <put-attribute name="title" value="Registration Page"/>
+        <put-attribute name="body" value="/WEB-INF/view/admin/createEvent.jspx"/>
+    </definition>
+</tiles-definitions>
