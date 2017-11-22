@@ -24,9 +24,9 @@ public class Event implements Serializable {
     private double drawCoefficient;
     @Column(name = "WIN2_COEFFICIENT")
     private double win2Coefficient;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Team team1;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Team team2;
     @Column(name = "EVENT_RESULT")
     private String eventResult;

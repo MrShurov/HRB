@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import pojos.TeamsForCreate;
 import pojos.User;
 import services.IUserService;
 
@@ -32,7 +33,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/admin/page", method = RequestMethod.GET)
-    public String getAdminPage() {
+    public String getAdminPage(ModelMap modelMap) {
+        modelMap.put("teams",new TeamsForCreate());
         return "admin";
     }
 

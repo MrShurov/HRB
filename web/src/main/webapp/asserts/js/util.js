@@ -1,4 +1,3 @@
-/*
 $(document).ready(function(){
     $('#addEvent').click(function () {
         addEvent();
@@ -26,4 +25,4 @@ function addEvent() {
             $(".eventTable").append(el);
         });
     }
-}*/
+}

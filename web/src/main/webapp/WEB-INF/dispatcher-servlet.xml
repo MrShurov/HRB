@@ -13,12 +13,12 @@
     <import resource="classpath*:beans-services.xml"/>
     <import resource="classpath*:beans-dao.xml"/>
     <mvc:resources mapping="/resources/**" location="asserts"/>
-    <mvc:default-servlet-handler />
+    <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>
     <context:component-scan base-package="controller"/>
     <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <property name="definitions">
-                <value>/WEB-INF/tiles.xml</value>
+            <value>/WEB-INF/tiles.xml</value>
         </property>
     </bean>
 
@@ -44,4 +44,5 @@
             <property name="paramName" value="locale"/>
         </bean>
     </mvc:interceptors>
+
 </beans>

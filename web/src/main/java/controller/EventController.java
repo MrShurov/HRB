@@ -28,13 +28,6 @@ public class EventController {
         return MAIN;
     }
 
-    @RequestMapping(value = "/addEvent", method = RequestMethod.POST)
-    private String addEvent(ModelMap modelMap, /*@RequestAttribute("team1") */String str1, /*@RequestAttribute("team2") */String str2) {
-        Event newEvent = eventService.addEvent(str1, str2);
-        modelMap.put("event",newEvent);
-        return "admin";
-    }
-
     private void fillModel(ModelMap modelMap) {
         populatePageName(modelMap);
         List<Event> list = eventService.getAll();

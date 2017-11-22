@@ -1,10 +1,12 @@
 package controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pojos.Event;
+import pojos.TeamsForCreate;
 import services.IEventService;
 
 import java.util.List;
@@ -15,7 +17,7 @@ public class EventRestController {
     @Autowired
     private IEventService eventService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<List<Event>> getEvents() {
         List<Event> events = eventService.getAll();
@@ -32,7 +34,7 @@ public class EventRestController {
         }
         event.setEventResult(newEvent.getEventResult());
         newEvent = eventService.update(event);
-        return new ResponseEntity(newEvent, HttpStatus.OK);
+        return new ResponseEntity<Event>(newEvent, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
@@ -41,9 +43,9 @@ public class EventRestController {
         eventService.delete(eventService.get(id));
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ResponseEntity<Event> addEvent(@RequestHeader("team1") String str1,@RequestHeader("team2") String str2) {
-        Event newEvent = eventService.addEvent(str1,str2);
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public ResponseEntity<Event> addEvent(TeamsForCreate teamsForCreate) {
+        Event newEvent = eventService.addEvent(teamsForCreate);
         return new ResponseEntity<>(newEvent, HttpStatus.CREATED);
     }
 }

@@ -10,7 +10,7 @@
 	<http auto-config="true">
 		<intercept-url pattern="/" access="permitAll"/>
 		<intercept-url pattern="/events/page" access="permitAll"/>
-		<intercept-url pattern="/events/**" access="hasAnyRole('ROLE_ADMIN')"/>
+		<!--<intercept-url pattern="/events/**" access="hasAnyRole('ROLE_ADMIN')"/>-->
 		<intercept-url pattern="/bets/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
 		<form-login login-page="/login"
 					username-parameter="username"

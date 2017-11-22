@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pojos.Event;
 import pojos.Team;
+import pojos.TeamsForCreate;
 import services.BaseService;
 import services.IEventService;
 
@@ -26,10 +27,10 @@ public class EventServiceImpl extends BaseService<Event> implements IEventServic
     }
 
     @Override
-    public Event addEvent(String str1,String str2) {
-        if (str1 != null && str2 != null){
-            Team team1 = teamDao.getByName(str1);
-            Team team2 = teamDao.getByName(str2);
+    public Event addEvent(TeamsForCreate teamsForCreate) {
+        if (teamsForCreate != null){
+            Team team1 = teamDao.getByName(teamsForCreate.getTeam1());
+            Team team2 = teamDao.getByName(teamsForCreate.getTeam2());
             Event event = new Event();
             event.setTeam1(team1);
             event.setTeam2(team2);
@@ -42,6 +43,6 @@ public class EventServiceImpl extends BaseService<Event> implements IEventServic
     }
 
     private double getCoefficient(Team team){
-        return (team.getWinAmount()+team.getLoseAmount())/team.getWinAmount();
+        return ((double)(team.getWinAmount()+team.getLoseAmount())/team.getWinAmount());
     }
 }
