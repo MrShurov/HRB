@@ -3,10 +3,12 @@
           xmlns:s="http://www.springframework.org/tags/form"
           xmlns:spring="http://www.springframework.org/tags"
           xmlns="http://www.w3.org/1999/xhtml" version="2.0">
+    <title><spring:message code="registration.title"/></title>
 <s:form class="form-horizontal col-sm-12" id="userForm" name="user" action="${pageContext.request.contextPath}/user/registration" method="post" modelAttribute="user">
     <c:if test="${isUnique == false}"><span><spring:message code="error.login"/></span></c:if><br/>
     <s:errors path="password" cssStyle="color: red"/><br/>
     <s:errors path="username" cssStyle="color: red"/>
+    <div><h3><spring:message code="registration.title"/></h3></div>
     <fieldset>
         <div class="form-group">
             <label class="control-label col-sm-4" for="username_or_email"><spring:message code="login.login"/></label>

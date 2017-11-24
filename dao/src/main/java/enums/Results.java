@@ -1,9 +1,9 @@
 package enums;
 
 public enum Results {
-    WIN1("Win 1 team"),
-    DRAW("Draw"),
-    WIN2("Win 2 team");
+    WIN1("WIN1"),
+    DRAW("DRAW"),
+    WIN2("WIN2");
 
     private String result;
 

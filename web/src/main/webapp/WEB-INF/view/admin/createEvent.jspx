@@ -3,27 +3,102 @@
           xmlns:s="http://www.springframework.org/tags/form"
           xmlns:spring="http://www.springframework.org/tags"
           xmlns="http://www.w3.org/1999/xhtml" version="2.0">
+    <title><spring:message code="admin.title"/></title>
     <script type="text/javascript">
         var restUrl = '${pageContext.request.contextPath}/events';
     </script>
-    <div class = "eventTable">
-    </div>
-    <s:form method="post" class="form-horizontal col-sm-12" action="${pageContext.request.contextPath}/events/" modelAttribute="teams" name="teams">
+    <c:if test="${error == true}"><span>Error</span></c:if><br/>
+    <div><h3>Teams</h3></div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="text-center">name</th>
+            <th class="text-center">win</th>
+            <th class="text-center">lose</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="AllTeams" items="${AllTeams}" varStatus="status">
+            <tr>
+                <td>${AllTeams.name}</td>
+                <td>${AllTeams.winAmount}</td>
+                <td>${AllTeams.loseAmount}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+    <div class="teamTable">Teams create</div>
+    <s:form method="post" class="form-horizontal col-sm-12" action="${pageContext.request.contextPath}/team/add"
+            modelAttribute="createTeam" name="createTeam">
+        <fieldset>
+            <div class="form-group">
+                <label class="control-label col-sm-4" for="name"><spring:message code="team.name"/></label>
+                <div class="col-sm-6">
+                    <s:input class="form-control" id="name" name="name" type="text"
+                             path="name"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-4" for="winAmount"><spring:message code="team.winAmount"/></label>
+                <div class="col-sm-6">
+                    <s:input class="form-control" id="winAmount" name="winAmount" placeholder="Second Team" type="text"
+                             path="winAmount"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-4" for="loseAmount"><spring:message code="team.loseAmount"/></label>
+                <div class="col-sm-6">
+                    <s:input class="form-control" id="loseAmount" name="loseAmount" placeholder="Second Team" type="text"
+                             path="loseAmount"/>
+                </div>
+            </div>
+            <div>
+                <input id="teamAdd" type="submit" class="btn btn-primary" value="Create Team"/>
+            </div>
+        </fieldset>
+    </s:form>
+    <div class="eventTable"><spring:message code="create.submit"/></div>
+    <s:form method="post" class="form-horizontal col-sm-12" action="${pageContext.request.contextPath}/events/"
+            modelAttribute="teams" name="teams">
         <fieldset>
             <div class="form-group">
                 <label class="control-label col-sm-4" for="team1"><spring:message code="event.team1"/></label>
                 <div class="col-sm-6">
-                    <s:input class="form-control" id="team1" name="team1" placeholder="Team First" type="text" path="team1"/>
+                    <s:input class="form-control" id="team1" name="team1" placeholder="Team First" type="text"
+                             path="team1"/>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-4" for="team2"><spring:message code="event.team2"/></label>
                 <div class="col-sm-6">
-                    <s:input class="form-control" id="team2" name="team2" placeholder="Second Team" type="text" path="team2"/>
+                    <s:input class="form-control" id="team2" name="team2" placeholder="Second Team" type="text"
+                             path="team2"/>
                 </div>
             </div>
             <div>
                 <input id="addEvent" type="submit" class="btn btn-primary" value="Create Event"/>
+            </div>
+        </fieldset>
+    </s:form>
+    <div class="updateEventTable"><spring:message code="event.update"/></div>
+    <s:form method="post" class="form-horizontal col-sm-12" action="${pageContext.request.contextPath}/events/update"
+            modelAttribute="event" name="event">
+        <fieldset>
+            <div class="form-group">
+                <label class="control-label col-sm-4" for="id"><spring:message code="eventId"/></label>
+                <div class="col-sm-6">
+                    <s:input class="form-control" id="id" name="id" placeholder="Event Id" type="text" path="id"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-4" for="eventResult"><spring:message code="event.result"/></label>
+                <div class="col-sm-6">
+                    <s:input class="form-control" id="eventResult" name="eventResult" placeholder="Event Result"
+                             type="text" path="eventResult"/>
+                </div>
+            </div>
+            <div>
+                <input type="submit" class="btn btn-primary" value="Update Event"/>
             </div>
         </fieldset>
     </s:form>

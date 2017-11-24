@@ -30,4 +30,11 @@ public class TeamDaoImpl extends BaseDao<Team> implements ITeamDao {
         Query query = getSession().createQuery(hql).setParameter("name", name);
         return (Team)query.getSingleResult();
     }
+
+    @Override
+    public List<String> getAllNames() {
+        String hql = "select name from Team";
+        Query query = getSession().createQuery(hql);
+        return query.getResultList();
+    }
 }

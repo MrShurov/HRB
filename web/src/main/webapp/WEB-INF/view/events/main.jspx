@@ -3,6 +3,8 @@
           xmlns:s="http://www.springframework.org/tags/form"
           xmlns:spring="http://www.springframework.org/tags"
           xmlns="http://www.w3.org/1999/xhtml" version="2.0">
+    <title><spring:message code="events.title"/></title>
+    <c:if test="${success == true}"><span>Success. You are updated event</span></c:if><br/>
     <div><h3><spring:message code="events.title"/></h3></div>
     <table class="table">
         <thead>

@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import pojos.Event;
+import pojos.Team;
 import pojos.TeamsForCreate;
 import pojos.User;
+import services.ITeamService;
 import services.IUserService;
 
 import javax.servlet.http.HttpSession;
@@ -20,6 +23,8 @@ import javax.validation.Valid;
 public class UserController {
     @Autowired
     private IUserService userService;
+    @Autowired
+    private ITeamService teamService;
 
     @RequestMapping(value = "/registration/page", method = RequestMethod.GET)
     public String getRegistrationPage(ModelMap modelMap) {
@@ -34,7 +39,10 @@ public class UserController {
 
     @RequestMapping(value = "/admin/page", method = RequestMethod.GET)
     public String getAdminPage(ModelMap modelMap) {
+        modelMap.put("createTeam",new Team());
+        modelMap.put("AllTeams",teamService.getAll());
         modelMap.put("teams",new TeamsForCreate());
+        modelMap.put("event",new Event());
         return "admin";
     }
 

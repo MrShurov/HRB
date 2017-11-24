@@ -2,26 +2,58 @@
           xmlns:c="http://java.sun.com/jsp/jstl/core"
           xmlns:s="http://www.springframework.org/tags/form"
           xmlns:spring="http://www.springframework.org/tags"
+          xmlns:sec="http://www.springframework.org/security/tags"
           xmlns="http://www.w3.org/1999/xhtml" version="2.0">
+    <title><spring:message code="bets.title"/></title>
+    <c:if test="${not empty result}"><span>${resultl}</span></c:if><br/>
+    <sec:authorize access="isAuthenticated()">
+        <s:form method="post" class="form-horizontal col-sm-12" action="${pageContext.request.contextPath}/bets/create"
+                modelAttribute="bet" name="bet">
+            <fieldset>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="event"><spring:message code="eventId"/></label>
+                    <div class="col-sm-6">
+                        <s:input class="form-control" id="event" name="event" type="text" path="event"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="possibleWin"><spring:message code="bet"/></label>
+                    <div class="col-sm-6">
+                        <s:input class="form-control" id="possibleWin" name="possibleWin"
+                                 type="text" path="possibleWin"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4" for="valueBet"><spring:message code="predictableResult"/></label>
+                    <div class="col-sm-6">
+                        <s:input class="form-control" id="valueBet" name="valueBet"  type="text" path="valueBet"/>
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-primary" value="Create Bet"/>
+                </div>
+            </fieldset>
+        </s:form>
+    </sec:authorize>
     <div><h3><spring:message code="bets.title"/></h3></div>
     <table class="table">
         <thead>
         <tr>
             <th class="text-center"><spring:message code="betId"/></th>
             <th class="text-center"><spring:message code="eventId"/></th>
-            <th class="text-center"><spring:message code="bet.coefficient"/></th>
-            <th class="text-center"><spring:message code="bet"/></th>
+            <th class="text-center"><spring:message code="bet.possibleWin"/></th>
             <th class="text-center"><spring:message code="predictableResult"/></th>
+            <th class="text-center"><spring:message code="status"/></th>
         </tr>
         </thead>
         <tbody>
         <c:forEach var="bet" items="${bets}" varStatus="status">
             <tr>
                 <td>${bet.id}</td>
-                <td>${bet.event.team1.name + bet.event.team2.name}</td>
-                <td>${bet.coefficient}</td>
-                <td>${bet.bet}</td>
+                <td>${bet.event}</td>
+                <td>${bet.possibleWin}</td>
                 <td>${bet.valueBet}</td>
+                <td>${bet.status}</td>
             </tr>
         </c:forEach>
         </tbody>

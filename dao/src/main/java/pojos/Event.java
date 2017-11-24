@@ -2,6 +2,7 @@ package pojos;
 
 import javafx.beans.DefaultProperty;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,7 +12,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity()
 @Table(name = "EVENT")
 public class Event implements Serializable {
     @Id
@@ -24,9 +25,9 @@ public class Event implements Serializable {
     private double drawCoefficient;
     @Column(name = "WIN2_COEFFICIENT")
     private double win2Coefficient;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     private Team team1;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     private Team team2;
     @Column(name = "EVENT_RESULT")
     private String eventResult;

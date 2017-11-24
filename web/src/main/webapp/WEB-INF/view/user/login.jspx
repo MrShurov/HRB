@@ -3,6 +3,9 @@
           xmlns:s="http://www.springframework.org/tags/form"
           xmlns:spring="http://www.springframework.org/tags"
           xmlns="http://www.w3.org/1999/xhtml" version="2.0">
+    <title><spring:message code="login.login"/></title>
+    <div><h3><spring:message code="login.login"/></h3></div>
+    <c:if test="${access_denied == false}"><span><spring:message code="error"/></span></c:if><br/>
 <form method="post" class="form-horizontal col-sm-12" action="${pageContext.request.contextPath}/login" >
     <fieldset>
         <div class="form-group">

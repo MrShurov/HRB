@@ -45,6 +45,11 @@ public class DaoTest {
     }
 
     @Test
+    public void getAllByEventIdTest(){
+        System.out.println(betDao.getAllByEventId(1L));
+    }
+
+    @Test
     public void getAllUsernamesTest(){
         List<String> list = userDao.getAllUsernames();
         System.out.println(list);
@@ -73,14 +78,14 @@ public class DaoTest {
         User user = new User("Shur","qwerty");
         userDao.add(user);
         Event event = new Event(null,null);
-        Bet bet = new Bet(event,user.getId(),0,0, Results.WIN1.getResult());
+        Bet bet = new Bet(event.getId(),user.getId(),0, Results.WIN1.getResult());
         eventDao.add(event);
         betDao.add(bet);
         Assert.assertEquals("is working",bet,betDao.get(bet.getId()));
         Bet betFromDB = betDao.get(bet.getId());
-        betFromDB.setBet(1.0);
+        betFromDB.setPossibleWin(1.0);
         betDao.update(betFromDB);
-        Assert.assertNotEquals("is working",0,betDao.get(bet.getId()).getBet());
+        Assert.assertNotEquals("is working",0,betDao.get(bet.getId()).getPossibleWin());
         Assert.assertEquals("is working",betFromDB,betDao.get(bet.getId()));
         int size = betDao.getAllByUserId(bet.getUserId()).size();
         betDao.delete(betFromDB);

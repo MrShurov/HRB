@@ -1,7 +1,10 @@
 $(document).ready(function(){
     $('#addEvent').click(function () {
         addEvent();
-    })
+    });
+   /* $('#updateEvent').click(function () {
+        updateEvent();
+    });*/
 });
 
 function addEvent() {
@@ -26,3 +29,26 @@ function addEvent() {
         });
     }
 }
+
+/*function updateEvent() {
+    var id = $("#id").val();
+    var eventResult = $("#eventResult").val();
+    if (id && eventResult) {
+        var event = {
+            id : id,
+            eventResult : eventResult
+        };
+        $.ajax({
+            data:event,
+            dataType: "json",
+            type:'put',
+            url: ${pageContext.request.contextPath}/events/ + id
+        }).done(function(data) {
+            var el = '<div>Event updated data.team1 data.team2</div>';
+            $(".updateEventTable").append(el);
+        }).fail(function(data){
+            var el = '<div>Error data.team1 data.team2 </div>';
+            $(".updateEventTable").append(el);
+        });
+    }
+}*/

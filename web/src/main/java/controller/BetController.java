@@ -23,6 +23,15 @@ public class BetController {
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public String getMainPage(ModelMap modelMap) {
         fillModel(modelMap);
+        modelMap.put("bet",new Bet());
+        return "bets/main";
+    }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String createBet(ModelMap modelMap, Bet bet) {
+        modelMap.put("result",betService.createBet(bet));
+        fillModel(modelMap);
+        modelMap.put("bet",new Bet());
         return "bets/main";
     }
 

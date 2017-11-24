@@ -8,4 +8,5 @@ import java.util.List;
 public interface ITeamDao extends Dao<Team>{
     Team getByName(String name);
     List<Team> getAll();
+    List<String> getAllNames();
 }

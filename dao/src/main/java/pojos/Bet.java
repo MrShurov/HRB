@@ -18,24 +18,21 @@ public class Bet implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
-    @OneToOne
-    private Event event;
+    @Column(name = "EVENT_ID")
+    private Long event;
     @Column(name = "USER_ID")
     private Long userId;
-    @DecimalMin(value = "1.0", message = "Coefficient must be a greater than 1")
-    @Column(name = "COEFFICIENT")
-    private double coefficient;
-    @DecimalMin(value = "0", message = "Bet must be a greater than 0")
-    @Column(name = "BET")
-    private double bet;
+    @Column(name = "POSSIBLE_WIN")
+    private double possibleWin;
     @Column(name = "VALUE_BET")
     private String valueBet;
+    @Column(name = "STATUS")
+    private String status;
 
-    public Bet(Event event, Long userId, double coefficient, double bet, String valueBet) {
+    public Bet(Long event, Long userId, double possibleWin, String valueBet) {
         this.event = event;
         this.userId = userId;
-        this.coefficient = coefficient;
-        this.bet = bet;
+        this.possibleWin = possibleWin;
         this.valueBet = valueBet;
     }
 }

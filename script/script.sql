@@ -2,20 +2,12 @@ create table bet
 (
 	ID bigint auto_increment
 		primary key,
-	BET double null,
-	COEFFICIENT double null,
-	VALUE_BET varchar(255) null,
-	event_EVENT_ID bigint null,
-	user_ID bigint null
+	EVENT_ID bigint null,
+	POSSIBLE_WIN double null,
+	STATUS varchar(255) null,
+	USER_ID bigint null,
+	VALUE_BET varchar(255) null
 )
-;
-
-create index FK1ghnqte9se1dmurdkj8k6ncuw
-	on bet (user_ID)
-;
-
-create index FK4be864jw19c84dwrxsvxjh3ta
-	on bet (event_EVENT_ID)
 ;
 
 create table event
@@ -23,9 +15,20 @@ create table event
 	EVENT_ID bigint auto_increment
 		primary key,
 	DRAW_COEFFICIENT double null,
+	EVENT_RESULT varchar(255) null,
 	WIN1_COEFFICIENT double null,
-	WIN2_COEFFICIENT double null
+	WIN2_COEFFICIENT double null,
+	team1_TEAM_ID bigint null,
+	team2_TEAM_ID bigint null
 )
+;
+
+create index FK8uq0gicfnsbo8bl0gcng5sci6
+	on event (team2_TEAM_ID)
+;
+
+create index FKpw91hyp1cinodo172gsqkbtji
+	on event (team1_TEAM_ID)
 ;
 
 create table event_teams
@@ -88,6 +91,7 @@ create table user
 )
 ;
 
-create index FKjki91b0cgc9x9h61uedp0c7cs
+create index FK3evje3301pxvt0hsr11iqtul4
 	on user (info_id)
 ;
+

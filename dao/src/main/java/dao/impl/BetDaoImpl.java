@@ -24,4 +24,11 @@ public class BetDaoImpl extends BaseDao<Bet> implements IBetDao {
                 .setParameter("id", userId);
         return query.getResultList();
     }
+
+    @Override
+    public List getAllByEventId(Long userId) {
+        Query query = getSession().createQuery("select b from Bet b where b.event=:id")
+                .setParameter("id", userId);
+        return query.getResultList();
+    }
 }

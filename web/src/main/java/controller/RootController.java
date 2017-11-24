@@ -32,8 +32,9 @@ public class RootController {
     @RequestMapping(value = "/access_denied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap model) {
         fillModel(model);
+        model.put("access_denied",false);
         model.addAttribute("user", getPrincipal());
-        return MAIN;
+        return "login";
     }
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)

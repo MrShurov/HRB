@@ -9,4 +9,5 @@ import java.util.List;
 public interface IEventService extends IService<Event> {
     List<Event> getAll();
     Event addEvent(TeamsForCreate teamsForCreate);
+    Event resultEvent(Event event);
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import pojos.Event;
 import pojos.TeamsForCreate;
 import services.IEventService;
+import services.ITeamService;
 
 import java.util.List;
 
@@ -16,6 +17,8 @@ import java.util.List;
 public class EventRestController {
     @Autowired
     private IEventService eventService;
+    @Autowired
+    private ITeamService teamService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
@@ -27,14 +30,14 @@ public class EventRestController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<Event> updateEvent(@PathVariable("id") Integer id, @RequestBody Event newEvent) {
+    public ResponseEntity<Event> updateEvent(@PathVariable("id") Long id, @RequestBody Event newEvent) {
         Event event = eventService.get(id);
         if (event == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         event.setEventResult(newEvent.getEventResult());
         newEvent = eventService.update(event);
-        return new ResponseEntity<Event>(newEvent, HttpStatus.OK);
+        return new ResponseEntity<>(newEvent, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
@@ -45,6 +48,7 @@ public class EventRestController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<Event> addEvent(TeamsForCreate teamsForCreate) {
+
         Event newEvent = eventService.addEvent(teamsForCreate);
         return new ResponseEntity<>(newEvent, HttpStatus.CREATED);
     }

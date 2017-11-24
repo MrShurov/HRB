@@ -23,4 +23,6 @@ public class EventDaoImpl extends BaseDao<Event> implements IEventDao {
         Query query = getSession().createQuery(hql);
         return query.getResultList();
     }
+
+
 }

@@ -53,14 +53,14 @@ public class ServiceTest {
         User user = new User("Shur","qwerty");
         userService.add(user);
         Event event = new Event(null,null);
-        Bet bet = new Bet(event,user.getId(),0,0, Results.WIN1.getResult());
+        Bet bet = new Bet(event.getId(),user.getId(),0, Results.WIN1.getResult());
         eventService.add(event);
         betService.add(bet);
         Assert.assertEquals("is working",bet,betService.get(bet.getId()));
         Bet betFromDB = betService.get(bet.getId());
-        betFromDB.setBet(1.0);
+        betFromDB.setPossibleWin(1.0);
         betService.update(betFromDB);
-        Assert.assertNotEquals("is working",0,betService.get(bet.getId()).getBet());
+        Assert.assertNotEquals("is working",0,betService.get(bet.getId()).getPossibleWin());
         Assert.assertEquals("is working",betFromDB,betService.get(bet.getId()));
         int size = betService.getAllByUserId(bet.getUserId()).size();
         betService.delete(betFromDB);
